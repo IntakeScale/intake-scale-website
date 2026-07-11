@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="We run Meta ads for mental health, ABA therapy, and physical therapy clinics. You pay per qualified lead. No fluff, no long contracts." />
+  <title>Intake Scale - Meta Ads That Fill Your Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #08080A;
+      --bg-1: #0C0C0F;
+      --bg-2: #111116;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --border-hov: rgba(255,255,255,0.18);
+      --text: #F2F5F0;
+      --text-2: #F2F5F0;
+      --text-3: #F2F5F0;
+      --accent: #C8F000;
+      --accent-dim: rgba(200,240,0,0.1);
+      --accent-glow: rgba(200,240,0,0.22);
+      --green: #22c55e;
+      --green-dim: rgba(34,197,94,0.12);
+      --r-pill: 9999px;
+      --font: 'Geist', system-ui, sans-serif;
+      --font-display: 'Geist', system-ui, sans-serif;
+      --spring: cubic-bezier(0.32, 0.72, 0, 1);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---- NAV ---- */
+    .nav-wrap {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 24px; display: flex; justify-content: center;
+      transition: padding 0.3s var(--ease);
+    }
+
+    .nav {
+      width: 100%; max-width: 1160px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(8,8,10,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 6px 10px 6px 14px;
+    }
+
+    .logo {
+      font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--text); text-decoration: none;
+      font-family: var(--font-display);
+    }
+
+    .logo-pill {
+      display: inline-flex; align-items: center;
+      line-height: 0;
+    }
+
+    .logo-pill img { height: 68px; display: block; }
+
+    .foot-logo-pill img {
+      height: 220px;
+      filter: saturate(1.35) drop-shadow(0 0 46px rgba(200,240,0,0.18));
+    }
+
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-2);
+      text-decoration: none; padding: 6px 13px; border-radius: var(--r-pill);
+      transition: color 0.2s var(--ease), background 0.2s var(--ease);
+    }
+
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font); font-weight: 700; font-size: 14px;
+      border: none; cursor: pointer; text-decoration: none;
+      border-radius: var(--r-pill); white-space: nowrap;
+      transition: background 0.2s var(--ease), transform 0.15s var(--ease), box-shadow 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary { background: var(--accent); color: #08080A; padding: 10px 18px; }
+    .btn-primary:hover { background: #a8cc00; box-shadow: 0 4px 24px var(--accent-glow); transform: translateY(-1px); }
+
+    .btn-lg { font-size: 16px; padding: 14px 26px; }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-2);
+      padding: 10px 18px; border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-hov); background: var(--surface); }
+
+    .btn-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center; font-size: 11px;
+      transition: transform 0.2s var(--ease);
+    }
+    .btn-primary:hover .btn-icon { transform: translateX(2px) translateY(-1px); }
+
+    .ham {
+      display: none; width: 36px; height: 36px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; cursor: pointer;
+      align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+    }
+    .ham span {
+      display: block; width: 16px; height: 1.5px;
+      background: var(--text); border-radius: 9999px;
+      transition: transform 0.3s var(--spring), opacity 0.25s;
+    }
+    .ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .ham.open span:nth-child(2) { opacity: 0; }
+    .ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mob-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: rgba(8,8,10,0.97); backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      font-family: var(--font-display);
+      color: var(--text); text-decoration: none;
+      font-size: 28px; font-weight: 700; letter-spacing: -0.02em;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+    .mob-menu.open a { opacity: 1; transform: translateY(0); }
+    .mob-menu.open a:nth-child(1) { transition-delay: 0.04s; }
+    .mob-menu.open a:nth-child(2) { transition-delay: 0.09s; }
+    .mob-menu.open a:nth-child(3) { transition-delay: 0.14s; }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100dvh; display: flex; align-items: center;
+      padding: 110px 0 80px; position: relative; overflow: hidden;
+    }
+
+    .hero-orb-1 {
+      position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px; pointer-events: none;
+      background: radial-gradient(circle, rgba(200,240,0,0.11) 0%, transparent 68%);
+    }
+
+    .hero-orb-2 {
+      position: absolute; bottom: -60px; left: -80px;
+      width: 420px; height: 420px; pointer-events: none;
+      background: radial-gradient(circle, rgba(200,240,0,0.05) 0%, transparent 70%);
+    }
+
+    .hero-line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 340px;
+      gap: 64px; align-items: center; position: relative; z-index: 1;
+    }
+
+    .hero-niche {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-dim);
+      border: 1px solid rgba(200,240,0,0.3);
+      padding: 5px 12px; border-radius: var(--r-pill); margin-bottom: 20px;
+    }
+
+    .niche-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+    .hero-logo {
+      height: 240px; display: block; margin-bottom: 28px;
+      filter: saturate(1.35) drop-shadow(0 0 46px rgba(200,240,0,0.18));
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 66px); font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1.05; color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-h1 .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 18px; line-height: 1.65; color: var(--text-2);
+      max-width: 500px; margin-bottom: 36px;
+    }
+
+    .hero-sub strong { color: var(--text); font-weight: 700; }
+
+    .hero-btns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    /* Hero card */
+    .hero-card-wrap { position: relative; }
+
+    .h-shell {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+      border-radius: 22px; padding: 5px;
+    }
+
+    .h-core {
+      background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.055);
+      border-radius: 18px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.09);
+      padding: 22px;
+    }
+
+    .h-card-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-3); margin-bottom: 14px;
+    }
+
+    .h-funnel { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }
+
+    .hf-row { display: flex; align-items: center; gap: 10px; }
+
+    .hf-label { font-size: 11px; font-weight: 600; color: var(--text-2); width: 56px; flex-shrink: 0; }
+
+    .hf-track {
+      flex: 1; height: 8px; background: rgba(255,255,255,0.06);
+      border-radius: 99px; overflow: hidden;
+    }
+
+    .hf-fill {
+      height: 100%; width: 0; border-radius: 99px;
+      background: rgba(255,255,255,0.3);
+      transition: width 1.4s var(--ease);
+    }
+
+    .hf-fill.hf-accent {
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    .hero-card-wrap.on .hf-fill { width: var(--w); }
+
+    .hf-num { font-size: 13px; font-weight: 700; color: var(--text); width: 28px; text-align: right; flex-shrink: 0; }
+
+    .h-rows { display: flex; flex-direction: column; gap: 6px; }
+
+    .h-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border); border-radius: 10px;
+    }
+
+    .h-key { font-size: 13px; color: var(--text-2); font-weight: 500; }
+    .h-val { font-size: 13px; font-weight: 700; color: var(--text); }
+
+    .tag-live {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 700; color: var(--green);
+      background: var(--green-dim); padding: 3px 8px; border-radius: 99px;
+    }
+
+    .live-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+      animation: pulse-dot 1.8s ease infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      50% { box-shadow: 0 0 0 4px rgba(34,197,94,0); }
+    }
+
+    .tag-blue {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      background: var(--accent-dim); padding: 3px 8px; border-radius: 99px;
+    }
+
+    .tag-green {
+      font-size: 11px; font-weight: 700; color: var(--green);
+      background: var(--green-dim); padding: 3px 8px; border-radius: 99px;
+    }
+
+    /* ---- NICHES BAR ---- */
+    .niches-bar {
+      background: var(--bg-1);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .niches-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+    }
+
+    .niches-label {
+      font-size: 12px; font-weight: 600; color: var(--text-3);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-right: 6px;
+    }
+
+    .niche-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; color: var(--text-2);
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 7px 14px; border-radius: var(--r-pill);
+    }
+
+    .niche-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+    /* ---- SECTION BASE ---- */
+    section { padding: 96px 0; }
+
+    .s-hdr { margin-bottom: 56px; }
+    .s-hdr.center { text-align: center; }
+    .s-hdr.center .s-sub { max-width: 100%; margin: 0 auto; }
+
+    .s-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 46px); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.1; color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .s-sub {
+      font-size: 17px; color: var(--text-2); line-height: 1.7; max-width: 480px;
+    }
+
+    /* ---- DOUBLE-BEZEL CARD ---- */
+    .db {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+      border-radius: 22px; padding: 5px;
+      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .db:hover { border-color: var(--border-hov); transform: translateY(-3px); }
+
+    .db-in {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 18px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      padding: 26px; height: 100%;
+    }
+
+    .db.hi .db-in {
+      background: linear-gradient(145deg, rgba(200,240,0,0.1) 0%, rgba(200,240,0,0.03) 100%);
+    }
+
+    .card-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-size: 19px; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 8px; line-height: 1.25;
+    }
+
+    .card-desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+    /* ---- PROBLEM ---- */
+    .problem { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .prob-grid { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 14px; }
+
+    /* ---- VS TABLE ---- */
+    .vs-section { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .vs-wrap { max-width: 780px; margin: 0 auto; }
+
+    .vs-table {
+      width: 100%; border-collapse: collapse;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+    }
+
+    .vs-table thead tr {
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vs-table th {
+      padding: 16px 20px; text-align: center;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+      color: var(--text-2);
+    }
+
+    .vs-table th.th-us {
+      color: var(--accent);
+      background: rgba(200,240,0,0.08);
+    }
+
+    .vs-table td {
+      padding: 14px 20px; font-size: 14px; color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vs-table tr:last-child td { border-bottom: none; }
+
+    .vs-table td.td-feature { font-weight: 600; color: var(--text); }
+
+    .vs-table td.td-us {
+      text-align: center; font-weight: 700;
+      color: var(--green); background: rgba(34,197,94,0.04);
+    }
+
+    .vs-table td.td-them { text-align: center; color: var(--text-3); }
+
+    .check { color: var(--green); font-size: 16px; }
+    .cross { color: var(--text-3); font-size: 16px; }
+
+    /* ---- STEPS ---- */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: ''; position: absolute;
+      top: 28px; left: 50px; right: 50px; height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--border) 55%);
+    }
+
+    .step { padding-right: 28px; }
+
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--text-2);
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+
+    .step:first-child .step-num {
+      background: var(--accent); border-color: var(--accent); color: #08080A;
+      box-shadow: 0 0 0 6px rgba(200,240,0,0.12);
+    }
+
+    .step-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+    /* ---- DELIVERS ---- */
+    .delivers { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .d-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ---- PRICING ---- */
+    .pricing-max { max-width: 680px; margin: 0 auto; }
+
+    .pc-shell {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+      border-radius: 26px; padding: 6px;
+    }
+
+    .pc-core {
+      background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 21px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+      padding: 36px;
+    }
+
+    .pc-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 32px; gap: 16px;
+    }
+
+    .pc-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .pc-subtitle { font-size: 13px; color: var(--text-2); margin-top: 5px; }
+
+    .badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-dim);
+      border: 1px solid rgba(200,240,0,0.3);
+      padding: 5px 11px; border-radius: var(--r-pill); flex-shrink: 0; margin-top: 3px;
+    }
+
+    .price-rows { display: flex; flex-direction: column; margin-bottom: 28px; }
+
+    .price-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 15px 0; border-bottom: 1px solid var(--border);
+    }
+
+    .price-row:last-child { border-bottom: none; }
+
+    .pr-left { display: flex; flex-direction: column; gap: 3px; }
+    .pr-name { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pr-note { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+    .pr-amt { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+    .pr-amt small { font-size: 12px; font-weight: 500; color: var(--text-2); letter-spacing: 0; }
+
+    .pc-cta { width: 100%; justify-content: center; font-size: 15px; padding: 14px; }
+    .pc-note { text-align: center; font-size: 13px; color: var(--text-3); margin-top: 14px; }
+
+    /* ---- FORM ---- */
+    .form-sec { background: var(--bg-1); border-top: 1px solid var(--border); }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+
+    .form-h { font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--text); margin-bottom: 14px; }
+
+    .form-sub { font-size: 15px; color: var(--text-2); line-height: 1.7; margin-bottom: 28px; }
+
+    .promises { display: flex; flex-direction: column; gap: 11px; }
+
+    .p-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-2); line-height: 1.5; }
+
+    .p-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+
+    .form-shell {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+      border-radius: 26px; padding: 6px;
+    }
+
+    .form-core {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 21px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+      padding: 28px;
+    }
+
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .f-group { margin-bottom: 10px; }
+    .f-row .f-group { margin-bottom: 0; }
+
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--text-2); margin-bottom: 5px; }
+
+    input, select {
+      width: 100%; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); border-radius: 10px;
+      color: var(--text); font-family: var(--font); font-size: 14px;
+      padding: 10px 13px; outline: none;
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+
+    input::placeholder { color: rgba(242,245,240,0.4); }
+    select { appearance: none; cursor: pointer; }
+    select option { background: #111116; color: var(--text); }
+
+    input:focus, select:focus {
+      border-color: var(--accent); background: rgba(200,240,0,0.06);
+      box-shadow: 0 0 0 3px rgba(200,240,0,0.12);
+    }
+
+    .f-submit { width: 100%; justify-content: center; font-size: 15px; padding: 13px 22px; margin-top: 4px; }
+    .f-priv { font-size: 12px; color: var(--text-3); text-align: center; margin-top: 10px; }
+
+    /* ---- FAQ ---- */
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+
+    .faq-item {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+      border-radius: 14px; padding: 4px 22px;
+    }
+
+    .faq-item summary {
+      list-style: none; cursor: pointer; padding: 18px 0;
+      font-size: 15px; font-weight: 700; color: var(--text);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-icon {
+      font-size: 20px; font-weight: 400; color: var(--text-2); flex-shrink: 0;
+      transition: transform 0.25s var(--ease), color 0.25s var(--ease);
+    }
+
+    .faq-item[open] .faq-icon { transform: rotate(45deg); color: var(--accent); }
+
+    .faq-item p { font-size: 14px; color: var(--text-2); line-height: 1.65; padding-bottom: 20px; max-width: 62ch; }
+
+    /* ---- FOOTER ---- */
+    footer { padding: 80px 0; border-top: 1px solid var(--border); }
+
+    .foot-in { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+
+    .foot-logo { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-2); }
+
+    .foot-right { display: flex; align-items: center; gap: 20px; }
+
+    .foot-right a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .foot-right a:hover { color: var(--text-2); }
+
+    .foot-copy { font-size: 13px; color: var(--text-3); }
+
+    /* ---- REVEAL ---- */
+    .r { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .r.on { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card-wrap { display: none; }
+      .prob-grid { grid-template-columns: 1fr 1fr; }
+      .prob-grid .db:first-child { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .nav-links { display: none; }
+      .ham { display: flex; }
+      .hero { padding: 92px 0 60px; }
+      .hero-h1 { font-size: 34px; }
+      .prob-grid { grid-template-columns: 1fr; }
+      .prob-grid .db:first-child { grid-column: span 1; }
+      .steps-grid { grid-template-columns: 1fr; gap: 36px; }
+      .steps-grid::before { display: none; }
+      .step { padding-right: 0; }
+      .d-grid { grid-template-columns: 1fr; }
+      .vs-table { font-size: 13px; }
+      .vs-table th, .vs-table td { padding: 11px 12px; }
+      .form-grid { grid-template-columns: 1fr; gap: 40px; }
+      .f-row { grid-template-columns: 1fr; }
+      .pc-head { flex-direction: column; }
+      .foot-in { flex-direction: column; gap: 14px; text-align: center; }
+      .foot-right { flex-direction: column; gap: 10px; }
+    }
+
+    /* ---- INTAKE ENGINE DIAGRAM ---- */
+    .machine-sec { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .machine-wrap {
+      background: rgba(255,255,255,0.018);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 40px 28px 34px;
+      overflow-x: auto;
+    }
+    .machine-svg { display: block; min-width: 760px; width: 100%; height: auto; }
+    @keyframes df { to { stroke-dashoffset: -26; } }
+    @keyframes ds { to { stroke-dashoffset: -22; } }
+    .df { animation: df 1s linear infinite; }
+    .ds { animation: ds 1.9s linear infinite; }
+    @media (prefers-reduced-motion: reduce) { .df,.ds { animation: none; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap" id="navWrap">
+  <nav class="nav">
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://calendly.com/christian-intake-scale/30min" target="_blank" rel="noopener">Book a Call</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <a href="https://calendly.com/christian-intake-scale/30min" target="_blank" rel="noopener" class="btn btn-primary">
+        Book a Call <span class="btn-icon">&#8594;</span>
+      </a>
+      <button class="ham" id="ham" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob">
+  <a href="#how-it-works" onclick="closeMob()">How It Works</a>
+  <a href="#pricing" onclick="closeMob()">Pricing</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
+  <a href="https://calendly.com/christian-intake-scale/30min" target="_blank" rel="noopener" onclick="closeMob()">Book a Call</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="hero-line"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <img src="./logo-transparent.png" alt="Intake Scale" class="hero-logo r">
+        <div class="hero-niche r">
+          <span class="niche-dot"></span>
+          Mental Health &nbsp;&#183;&nbsp; ABA Therapy &nbsp;&#183;&nbsp; Physical Therapy
+        </div>
+        <h1 class="hero-h1 r d1">
+          Meta ads that fill your clinic.<br>
+          <span class="accent">You pay per lead.</span>
+        </h1>
+        <p class="hero-sub r d2">
+          We run Facebook and Instagram ads exclusively for healthcare clinics.
+          <strong>You only pay when we deliver leads. No vanity metrics. Just qualified patients calling your front desk.</strong>
+        </p>
+        <div class="hero-btns r d3">
+          <a href="https://calendly.com/christian-intake-scale/30min" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            Book a Free Strategy Call <span class="btn-icon">&#8594;</span>
+          </a>
+          <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
+
+      <div class="hero-card-wrap r d2">
+        <div class="h-shell">
+          <div class="h-core">
+            <p class="h-card-label">Example monthly report</p>
+            <div class="h-funnel">
+              <div class="hf-row">
+                <span class="hf-label">Leads</span>
+                <div class="hf-track"><div class="hf-fill" style="--w:100%"></div></div>
+                <span class="hf-num">47</span>
+              </div>
+              <div class="hf-row">
+                <span class="hf-label">Booked</span>
+                <div class="hf-track"><div class="hf-fill hf-accent" style="--w:30%"></div></div>
+                <span class="hf-num">14</span>
+              </div>
+            </div>
+            <div class="h-rows">
+              <div class="h-row">
+                <span class="h-key">Campaign status</span>
+                <span class="tag-live"><span class="live-dot"></span>Live</span>
+              </div>
+              <div class="h-row">
+                <span class="h-key">Cost per lead</span>
+                <span class="h-val">$38</span>
+              </div>
+              <div class="h-row">
+                <span class="h-key">Ad spend ROI</span>
+                <span class="tag-blue">4.2x</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NICHES BAR -->
+<div class="niches-bar">
+  <div class="container">
+    <div class="niches-inner">
+      <span class="niches-label">We work with</span>
+      <span class="niche-pill"><span class="niche-pill-dot"></span>Mental Health Clinics</span>
+      <span class="niche-pill"><span class="niche-pill-dot"></span>Psychiatry &amp; TMS</span>
+      <span class="niche-pill"><span class="niche-pill-dot"></span>Ketamine Therapy</span>
+      <span class="niche-pill"><span class="niche-pill-dot"></span>ABA Therapy</span>
+      <span class="niche-pill"><span class="niche-pill-dot"></span>Physical Therapy</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="s-hdr r">
+      <h2 class="s-h2">Most agencies are not the problem.<br>Their model is.</h2>
+      <p class="s-sub">You pay thousands a month whether patients come in or not. That is the problem. Here is what you are dealing with right now.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="db hi r">
+        <div class="db-in">
+          <div class="card-num">Problem 01</div>
+          <h3 class="card-title">You are paying for activity, not results</h3>
+          <p class="card-desc">Most agencies charge $3,000-$8,000 a month whether your phone rings or not. They optimize for impressions and CTR. You optimize for patients. Those are not the same goal, and they know it.</p>
+        </div>
+      </div>
+      <div class="db r d1">
+        <div class="db-in">
+          <div class="card-num">Problem 02</div>
+          <h3 class="card-title">Referrals are a ceiling, not a strategy</h3>
+          <p class="card-desc">Word of mouth is unpredictable. You cannot control it, you cannot scale it, and the day it slows down you have no backup system. Your practice needs a patient pipeline you own.</p>
+        </div>
+      </div>
+      <div class="db r d2">
+        <div class="db-in">
+          <div class="card-num">Problem 03</div>
+          <h3 class="card-title">Generic ads do not convert healthcare patients</h3>
+          <p class="card-desc">Healthcare patients make decisions differently than e-commerce shoppers. A generalist agency running the same playbook for a law firm and your mental health clinic will lose your money.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS TABLE -->
+<section class="vs-section">
+  <div class="container">
+    <div class="s-hdr center r">
+      <h2 class="s-h2">Intake Scale vs. every other agency</h2>
+      <p class="s-sub" style="max-width:520px;margin:0 auto;">This is the part most agencies hope you never ask about.</p>
+    </div>
+    <div class="vs-wrap r">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">What matters to you</th>
+            <th class="th-us">Intake Scale</th>
+            <th>Other Agencies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-feature">Accountability on every lead delivered</td>
+            <td class="td-us">&#10003; Pay per qualified lead</td>
+            <td class="td-them">&#10005; Pay flat rate, leads or not</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Built for healthcare clinics only</td>
+            <td class="td-us">&#10003; Healthcare only</td>
+            <td class="td-them">&#10005; One of 20 industries</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Transparent reporting in plain language</td>
+            <td class="td-us">&#10003; Every dollar tracked</td>
+            <td class="td-them">&#10005; Dashboard fluff</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Full funnel built for you (not just ads)</td>
+            <td class="td-us">&#10003; Landing page, tracking, funnel</td>
+            <td class="td-them">&#10005; Ads only, figure out the rest</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Creatives built specifically for your patients</td>
+            <td class="td-us">&#10003; Healthcare-aware copy</td>
+            <td class="td-them">&#10005; Repurposed templates</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- INTAKE ENGINE DIAGRAM -->
+<section class="machine-sec">
+  <div class="container">
+    <div class="s-hdr center r">
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">The Intake Engine</p>
+      <h2 class="s-h2">The machine we build for your clinic</h2>
+      <p class="s-sub" style="max-width:520px;margin:0 auto;">Not just ads. A full patient acquisition system. Every visitor is tracked, qualified, and worked until they book. Nothing leaks out.</p>
+    </div>
+    <div class="machine-wrap r d1">
+      <svg class="machine-svg" viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" aria-label="Intake Scale patient acquisition system diagram">
+        <defs>
+          <marker id="ab" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3z" fill="rgba(200,240,0,0.95)"/>
+          </marker>
+          <marker id="ag" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3z" fill="#22c55e"/>
+          </marker>
+          <marker id="ar" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3z" fill="rgba(34,197,94,0.8)"/>
+          </marker>
+        </defs>
+
+        <!-- Row label: Primary Flow -->
+        <text x="440" y="20" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.12em" fill="rgba(200,240,0,0.75)">PRIMARY FLOW</text>
+        <line x1="8" y1="24" x2="345" y2="24" stroke="rgba(200,240,0,0.22)" stroke-width="0.5"/>
+        <line x1="535" y1="24" x2="872" y2="24" stroke="rgba(200,240,0,0.22)" stroke-width="0.5"/>
+
+        <!-- NODE 1: Meta Ad -->
+        <rect x="8" y="42" width="110" height="50" rx="25" fill="rgba(200,240,0,0.14)" stroke="rgba(200,240,0,0.7)" stroke-width="1.5"/>
+        <text x="63" y="63" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.08em" fill="var(--accent)">META AD</text>
+        <text x="63" y="80" text-anchor="middle" font-family="system-ui" font-size="9.5" fill="rgba(255,255,255,0.55)">Facebook · Instagram</text>
+
+        <!-- Arrow 1→2 -->
+        <line x1="118" y1="67" x2="166" y2="67" stroke="rgba(200,240,0,0.85)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ab)" class="df"/>
+
+        <!-- NODE 2: Landing Page -->
+        <rect x="168" y="42" width="128" height="50" rx="25" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+        <text x="232" y="63" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.07em" fill="#F2F5F0">LANDING PAGE</text>
+        <text x="232" y="80" text-anchor="middle" font-family="system-ui" font-size="9.5" fill="rgba(255,255,255,0.5)">their first stop</text>
+
+        <!-- Arrow 2→3 -->
+        <line x1="296" y1="67" x2="344" y2="67" stroke="rgba(200,240,0,0.85)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ab)" class="df"/>
+
+        <!-- NODE 3: Intake Form -->
+        <rect x="346" y="42" width="128" height="50" rx="25" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+        <text x="410" y="63" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.07em" fill="#F2F5F0">INTAKE FORM</text>
+        <text x="410" y="80" text-anchor="middle" font-family="system-ui" font-size="9.5" fill="rgba(255,255,255,0.5)">name · clinic · phone</text>
+
+        <!-- Arrow 3→4 -->
+        <line x1="474" y1="67" x2="522" y2="67" stroke="rgba(200,240,0,0.85)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ab)" class="df"/>
+
+        <!-- NODE 4: Qualify -->
+        <rect x="524" y="42" width="112" height="50" rx="25" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+        <text x="580" y="63" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.07em" fill="#F2F5F0">QUALIFY</text>
+        <text x="580" y="80" text-anchor="middle" font-family="system-ui" font-size="9.5" fill="rgba(255,255,255,0.5)">right patients only</text>
+
+        <!-- Arrow 4→5 (green, success) -->
+        <line x1="636" y1="67" x2="686" y2="67" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#ag)" class="df"/>
+
+        <!-- NODE 5: Booked Call (GREEN) -->
+        <rect x="688" y="42" width="140" height="50" rx="25" fill="rgba(34,197,94,0.16)" stroke="#22c55e" stroke-width="2"/>
+        <text x="758" y="63" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.07em" fill="#22c55e">BOOKED CALL</text>
+        <text x="758" y="80" text-anchor="middle" font-family="system-ui" font-size="9.5" fill="rgba(34,197,94,0.85)">qualified patient ✓</text>
+
+        <!-- ─────────────────────────────── -->
+        <!-- Row label: Nobody Slips Through -->
+        <text x="440" y="168" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" letter-spacing="0.1em" fill="rgba(200,240,0,0.65)">NOBODY SLIPS THROUGH</text>
+        <line x1="168" y1="172" x2="338" y2="172" stroke="rgba(200,240,0,0.18)" stroke-width="0.5"/>
+        <line x1="542" y1="172" x2="690" y2="172" stroke="rgba(200,240,0,0.18)" stroke-width="0.5"/>
+
+        <!-- ↓ Landing Page → Pixel Tracking -->
+        <line x1="232" y1="92" x2="232" y2="186" stroke="rgba(200,240,0,0.5)" stroke-width="1.5" stroke-dasharray="4 4" class="ds"/>
+
+        <!-- NODE: Pixel Tracking -->
+        <rect x="168" y="188" width="128" height="46" rx="23" fill="rgba(200,240,0,0.09)" stroke="rgba(200,240,0,0.45)" stroke-width="1.5"/>
+        <text x="232" y="208" text-anchor="middle" font-family="system-ui" font-size="10.5" font-weight="800" letter-spacing="0.07em" fill="rgba(200,240,0,0.9)">PIXEL TRACKING</text>
+        <text x="232" y="224" text-anchor="middle" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.45)">every visitor ID'd</text>
+
+        <!-- → Pixel Tracking → Lead Scoring -->
+        <line x1="296" y1="211" x2="344" y2="211" stroke="rgba(200,240,0,0.45)" stroke-width="1.5" stroke-dasharray="4 4" class="ds"/>
+
+        <!-- NODE: Lead Scoring -->
+        <rect x="346" y="188" width="128" height="46" rx="23" fill="rgba(200,240,0,0.09)" stroke="rgba(200,240,0,0.45)" stroke-width="1.5"/>
+        <text x="410" y="208" text-anchor="middle" font-family="system-ui" font-size="10.5" font-weight="800" letter-spacing="0.07em" fill="rgba(200,240,0,0.9)">LEAD SCORING</text>
+        <text x="410" y="224" text-anchor="middle" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.45)">warm visitors flagged</text>
+
+        <!-- → Lead Scoring → Nurture Engine -->
+        <line x1="474" y1="211" x2="522" y2="211" stroke="rgba(200,240,0,0.45)" stroke-width="1.5" stroke-dasharray="4 4" class="ds"/>
+
+        <!-- NODE: Nurture Engine -->
+        <rect x="524" y="188" width="148" height="46" rx="23" fill="rgba(200,240,0,0.16)" stroke="var(--accent)" stroke-width="2"/>
+        <text x="598" y="208" text-anchor="middle" font-family="system-ui" font-size="10.5" font-weight="800" letter-spacing="0.07em" fill="var(--accent)">NURTURE ENGINE</text>
+        <text x="598" y="224" text-anchor="middle" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.55)">SMS + email until booked</text>
+
+        <!-- Nurture Engine ↑ → Booked Call (curve up-right) -->
+        <path d="M 598,188 C 598,132 758,132 758,92" fill="none" stroke="rgba(34,197,94,0.7)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ag)" class="ds"/>
+
+        <!-- Retargeting arc: Pixel Track left → sweeps above main row → Landing Page left -->
+        <path d="M 168,211 C 68,211 22,8 168,67" fill="none" stroke="rgba(34,197,94,0.6)" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#ar)" class="ds"/>
+
+        <!-- Retargeting label (near arc peak ~x=50, y=125) -->
+        <text x="50" y="124" text-anchor="middle" font-family="system-ui" font-size="9.5" font-style="italic" font-weight="700" fill="rgba(34,197,94,0.75)">retargeting</text>
+        <text x="50" y="138" text-anchor="middle" font-family="system-ui" font-size="9" fill="rgba(34,197,94,0.55)">brought back in</text>
+
+        <!-- Bottom caption -->
+        <text x="440" y="300" text-anchor="middle" font-family="system-ui" font-size="10" font-style="italic" fill="rgba(255,255,255,0.4)">Every clinic visitor is captured, scored, and nurtured until they book or permanently disqualify themselves.</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="s-hdr r">
+      <h2 class="s-h2">How it works</h2>
+      <p class="s-sub">Three phases. 90 days from kickoff to a full calendar of qualified patient calls.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step r">
+        <div class="step-num">01</div>
+        <h3 class="step-title">We build your foundation</h3>
+        <p class="step-desc">Campaign strategy, ad creatives, landing page, tracking pixels, and conversion funnel, all built from scratch around your specific clinic type and patient. No repurposed templates from other industries.</p>
+      </div>
+      <div class="step r d1">
+        <div class="step-num">02</div>
+        <h3 class="step-title">We launch and cut what does not work</h3>
+        <p class="step-desc">Campaigns go live on Facebook and Instagram. We monitor daily, run A/B tests on ad variations, and kill anything that is not producing calls. You are not paying for us to figure it out on your dime.</p>
+      </div>
+      <div class="step r d2">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Qualified patients call your clinic</h3>
+        <p class="step-desc">Leads routed directly to your front desk. Every dollar, every lead, every booked call is visible in your weekly report. You know exactly what your ad spend is producing, every single week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="delivers" id="deliverables">
+  <div class="container">
+    <div class="s-hdr r">
+      <h2 class="s-h2">What is included</h2>
+      <p class="s-sub">Everything needed to run a real patient acquisition system. Not just ads.</p>
+    </div>
+    <div class="d-grid">
+      <div class="db hi r">
+        <div class="db-in">
+          <div class="card-num">Included</div>
+          <h3 class="card-title">Ad creatives written for healthcare patients</h3>
+          <p class="card-desc">We write the copy and design the creative. Built around how a parent searching for ABA therapy, or a person considering TMS, actually makes decisions. Not how someone buying sneakers does.</p>
+        </div>
+      </div>
+      <div class="db r d1">
+        <div class="db-in">
+          <div class="card-num">Included</div>
+          <h3 class="card-title">Full funnel: click to booked call</h3>
+          <p class="card-desc">Landing page, intake form, follow-up sequence, conversion tracking. Every step between the ad click and your front desk is handled. Nothing falls through the cracks.</p>
+        </div>
+      </div>
+      <div class="db r d2">
+        <div class="db-in">
+          <div class="card-num">Included</div>
+          <h3 class="card-title">Pixel and lead attribution tracking</h3>
+          <p class="card-desc">You know which ad produced which lead, what they cost, and what your ROI is. In plain language. No ad-manager jargon, no vanity dashboards.</p>
+        </div>
+      </div>
+      <div class="db r d3">
+        <div class="db-in">
+          <div class="card-num">Included</div>
+          <h3 class="card-title">Weekly performance report</h3>
+          <p class="card-desc">Every week: qualified leads, cost per lead, booked calls, ad spend, and ROI. Sent straight to you. If it is not working, you will know before we do.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="s-hdr center r">
+      <h2 class="s-h2">Pricing</h2>
+      <p class="s-sub" style="max-width:520px;margin:0 auto;">No hidden fees. No long-term contracts to start. You know exactly what you are paying before we touch anything.</p>
+    </div>
+    <div class="pricing-max">
+      <div class="pc-shell r">
+        <div class="pc-core">
+          <div class="pc-head">
+            <div>
+              <p class="pc-title">Standard Package</p>
+              <p class="pc-subtitle">For mental health, ABA therapy, and physical therapy clinics</p>
+            </div>
+            <span class="badge">Full Service</span>
+          </div>
+          <div class="price-rows">
+            <div class="price-row">
+              <div class="pr-left">
+                <span class="pr-name">Setup Fee</span>
+                <span class="pr-note">Campaign build, pixel, landing page, funnel, tracking. One time.</span>
+              </div>
+              <div class="pr-amt">$1,500 <small>one-time</small></div>
+            </div>
+            <div class="price-row">
+              <div class="pr-left">
+                <span class="pr-name">Ad Spend</span>
+                <span class="pr-note">Paid directly to Meta. $3,000 minimum to run campaigns that actually work.</span>
+              </div>
+              <div class="pr-amt">$3,000+ <small>/mo</small></div>
+            </div>
+            <div class="price-row">
+              <div class="pr-left">
+                <span class="pr-name">Per Qualified Lead</span>
+                <span class="pr-note">You only pay for leads that actually show up. Priced based on your patient LTV. Discussed on your strategy call.</span>
+              </div>
+              <div class="pr-amt" style="color:var(--accent);">Custom</div>
+            </div>
+          </div>
+          <a href="https://calendly.com/christian-intake-scale/30min" target="_blank" rel="noopener" class="btn btn-primary pc-cta">
+            Book a Call to Get Started <span class="btn-icon">&#8594;</span>
+          </a>
+          <p class="pc-note">15-minute call. No pressure. We will tell you honestly if we are a fit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="s-hdr center r">
+      <h2 class="s-h2">Questions</h2>
+      <p class="s-sub" style="max-width:520px;margin:0 auto;">Everything clinics ask before booking a call.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item r">
+        <summary>Is there a contract?<span class="faq-icon">+</span></summary>
+        <p>No long-term contract to start. You can walk away after the setup is delivered if it is not working for you. We would rather earn a renewal than lock you into one.</p>
+      </details>
+      <details class="faq-item r">
+        <summary>Who controls the ad budget?<span class="faq-icon">+</span></summary>
+        <p>You do. Ad spend is paid directly to Meta from your own card, not to us. We manage the campaign, but the account and the budget are yours.</p>
+      </details>
+      <details class="faq-item r">
+        <summary>What if a lead is not actually qualified?<span class="faq-icon">+</span></summary>
+        <p>That is the point of pay-per-lead pricing. You are paying for people who fit your criteria and show up, not for clicks or form fills. If a lead does not meet what we agreed on, it does not count.</p>
+      </details>
+      <details class="faq-item r">
+        <summary>How long until we see results?<span class="faq-icon">+</span></summary>
+        <p>Most campaigns start producing qualified leads within the first two to three weeks of launch. On your strategy call we will give you a realistic 90-day projection based on your clinic type and market, not a guess.</p>
+      </details>
+      <details class="faq-item r">
+        <summary>Is this compliant for healthcare advertising?<span class="faq-icon">+</span></summary>
+        <p>We build every funnel to follow Meta's healthcare advertising policies and keep sensitive health information out of ad forms and tracking. We will walk through exactly what data is and is not collected on your strategy call.</p>
+      </details>
+      <details class="faq-item r">
+        <summary>What clinic types do you work with?<span class="faq-icon">+</span></summary>
+        <p>Mental health clinics (psychiatry, TMS, ketamine), ABA therapy providers, and physical therapy clinics. We do not run campaigns outside these three so we can actually stay sharp at each one.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A CALL -->
+<section class="form-sec" id="book">
+  <div class="container">
+    <div class="form-grid">
+      <div class="r">
+        <h2 class="form-h">Book your free strategy call</h2>
+        <p class="form-sub">Tell us about your clinic. We will show you the exact ad strategy we would use, what you can realistically expect in 90 days, and what it would cost. No pitch, no pressure.</p>
+        <div class="promises">
+          <div class="p-item"><span class="p-dot"></span>We review how patients find you right now and where the gaps are</div>
+          <div class="p-item"><span class="p-dot"></span>We show you the exact strategy we would run for your clinic type</div>
+          <div class="p-item"><span class="p-dot"></span>You get a realistic lead projection for 90 days based on real data</div>
+          <div class="p-item"><span class="p-dot"></span>We tell you straight if we can actually help you or not</div>
+        </div>
+      </div>
+
+      <div class="r d1">
+        <div class="form-shell">
+          <div class="form-core">
+            <form id="leadForm" onsubmit="handleSubmit(event)">
+              <div class="f-row">
+                <div class="f-group">
+                  <label for="fFirst">First Name</label>
+                  <input type="text" id="fFirst" name="firstName" placeholder="Jane" required />
+                </div>
+                <div class="f-group">
+                  <label for="fLast">Last Name</label>
+                  <input type="text" id="fLast" name="lastName" placeholder="Smith" required />
+                </div>
+              </div>
+              <div class="f-group">
+                <label for="fClinic">Clinic Name</label>
+                <input type="text" id="fClinic" name="clinicName" placeholder="Your Clinic Name" required />
+              </div>
+              <div class="f-group">
+                <label for="fEmail">Email</label>
+                <input type="email" id="fEmail" name="email" placeholder="jane@yourclinic.com" required />
+              </div>
+              <div class="f-group">
+                <label for="fPhone">Phone</label>
+                <input type="tel" id="fPhone" name="phone" placeholder="(555) 000-0000" required />
+              </div>
+              <div class="f-group">
+                <label for="fType">Clinic Type</label>
+                <select id="fType" name="clinicType" required>
+                  <option value="" disabled selected>Select your clinic type</option>
+                  <option value="mental-health">Mental Health (Psychiatry, TMS, Ketamine)</option>
+                  <option value="aba-therapy">ABA Therapy</option>
+                  <option value="physical-therapy">Physical Therapy</option>
+                  <option value="other">Other Healthcare</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary f-submit" id="submitBtn">
+                Book My Strategy Call <span class="btn-icon">&#8594;</span>
+              </button>
+              <p class="f-priv">We do not share your information. Ever.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-in">
+      <span class="logo-pill foot-logo-pill"><img src="./logo-transparent.png" alt="Intake Scale"></span>
+      <div class="foot-right">
+        <a href="mailto:Christian@intake-scale.com">Christian@intake-scale.com</a>
+        <span class="foot-copy">&#169; 2026 Intake Scale LLC</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  // Reveal animations
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  setTimeout(() => {
+    document.querySelectorAll('.hero .r').forEach(el => el.classList.add('on'));
+  }, 80);
+
+  // Nav shrink on scroll
+  const navWrap = document.getElementById('navWrap');
+  window.addEventListener('scroll', () => {
+    navWrap.style.padding = window.scrollY > 20 ? '10px 24px' : '16px 24px';
+  }, { passive: true });
+
+  // Mobile menu
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mob');
+
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMob() {
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Supabase
+  const supabaseClient = supabase.createClient(
+    'https://saxjdtadyraedgcmdiag.supabase.co',
+    'sb_publishable_UElUssb0Ff1hF_EvZaAXuQ_XUXigEd2'
+  );
+
+  // Form handler
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.innerHTML = 'Sending...';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    const data = {
+      first_name: e.target.firstName.value,
+      last_name: e.target.lastName.value,
+      clinic_name: e.target.clinicName.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      clinic_type: e.target.clinicType.value
+    };
+
+    const { error } = await supabaseClient.from('leads').insert([data]);
+
+    if (error) {
+      console.error('Lead insert failed:', error);
+      btn.innerHTML = 'Something went wrong. Try again.';
+      btn.style.background = '#dc2626';
+      btn.style.opacity = '1';
+      setTimeout(() => {
+        btn.innerHTML = 'Book My Strategy Call <span class="btn-icon">&#8594;</span>';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+      return;
+    }
+
+    btn.innerHTML = 'Call Booked. We will be in touch. &#10003;';
+    btn.style.background = '#16a34a';
+    btn.style.opacity = '1';
+    e.target.reset();
+    setTimeout(() => {
+      btn.innerHTML = 'Book My Strategy Call <span class="btn-icon">&#8594;</span>';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 5000);
+  }
+</script>
+
+</body>
+</html>
