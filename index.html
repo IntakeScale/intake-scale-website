@@ -1101,69 +1101,6 @@
   </div>
 </section>
 
-<!-- BOOK A CALL -->
-<section class="form-sec" id="book">
-  <div class="container">
-    <div class="form-grid">
-      <div class="r">
-        <h2 class="form-h">Book your free strategy call</h2>
-        <p class="form-sub">Tell us about your clinic. We will show you the exact ad strategy we would use, what you can realistically expect in 90 days, and what it would cost. No pitch, no pressure.</p>
-        <div class="promises">
-          <div class="p-item"><span class="p-dot"></span>We review how patients find you right now and where the gaps are</div>
-          <div class="p-item"><span class="p-dot"></span>We show you the exact strategy we would run for your clinic type</div>
-          <div class="p-item"><span class="p-dot"></span>You get a realistic lead projection for 90 days based on real data</div>
-          <div class="p-item"><span class="p-dot"></span>We tell you straight if we can actually help you or not</div>
-        </div>
-      </div>
-
-      <div class="r d1">
-        <div class="form-shell">
-          <div class="form-core">
-            <form id="leadForm" onsubmit="handleSubmit(event)">
-              <div class="f-row">
-                <div class="f-group">
-                  <label for="fFirst">First Name</label>
-                  <input type="text" id="fFirst" name="firstName" placeholder="Jane" required />
-                </div>
-                <div class="f-group">
-                  <label for="fLast">Last Name</label>
-                  <input type="text" id="fLast" name="lastName" placeholder="Smith" required />
-                </div>
-              </div>
-              <div class="f-group">
-                <label for="fClinic">Clinic Name</label>
-                <input type="text" id="fClinic" name="clinicName" placeholder="Your Clinic Name" required />
-              </div>
-              <div class="f-group">
-                <label for="fEmail">Email</label>
-                <input type="email" id="fEmail" name="email" placeholder="jane@yourclinic.com" required />
-              </div>
-              <div class="f-group">
-                <label for="fPhone">Phone</label>
-                <input type="tel" id="fPhone" name="phone" placeholder="(555) 000-0000" required />
-              </div>
-              <div class="f-group">
-                <label for="fType">Clinic Type</label>
-                <select id="fType" name="clinicType" required>
-                  <option value="" disabled selected>Select your clinic type</option>
-                  <option value="mental-health">Mental Health (Psychiatry, TMS, Ketamine)</option>
-                  <option value="aba-therapy">ABA Therapy</option>
-                  <option value="physical-therapy">Physical Therapy</option>
-                  <option value="other">Other Healthcare</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary f-submit" id="submitBtn">
-                Book My Strategy Call <span class="btn-icon">&#8594;</span>
-              </button>
-              <p class="f-priv">We do not share your information. Ever.</p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1177,7 +1114,6 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
   // Reveal animations
   const obs = new IntersectionObserver((entries) => {
@@ -1212,55 +1148,6 @@
     ham.classList.remove('open');
     mob.classList.remove('open');
     document.body.style.overflow = '';
-  }
-
-  // Supabase
-  const supabaseClient = supabase.createClient(
-    'https://saxjdtadyraedgcmdiag.supabase.co',
-    'sb_publishable_UElUssb0Ff1hF_EvZaAXuQ_XUXigEd2'
-  );
-
-  // Form handler
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.innerHTML = 'Sending...';
-    btn.disabled = true;
-    btn.style.opacity = '0.7';
-
-    const data = {
-      first_name: e.target.firstName.value,
-      last_name: e.target.lastName.value,
-      clinic_name: e.target.clinicName.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      clinic_type: e.target.clinicType.value
-    };
-
-    const { error } = await supabaseClient.from('leads').insert([data]);
-
-    if (error) {
-      console.error('Lead insert failed:', error);
-      btn.innerHTML = 'Something went wrong. Try again.';
-      btn.style.background = '#dc2626';
-      btn.style.opacity = '1';
-      setTimeout(() => {
-        btn.innerHTML = 'Book My Strategy Call <span class="btn-icon">&#8594;</span>';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-      return;
-    }
-
-    btn.innerHTML = 'Call Booked. We will be in touch. &#10003;';
-    btn.style.background = '#16a34a';
-    btn.style.opacity = '1';
-    e.target.reset();
-    setTimeout(() => {
-      btn.innerHTML = 'Book My Strategy Call <span class="btn-icon">&#8594;</span>';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 5000);
   }
 </script>
 
